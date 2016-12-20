@@ -7,7 +7,7 @@ use gl;
 use gl::types::*;
 use gl_renderer_plugin::GLRendererPlugin;
 
-use camera_components::Camera3DManager;
+use camera_components::{Camera3DManager, Camera2DManager};
 use mesh_component::{Mesh, MeshManager};
 use transform_components::{Transform3D, Transform2D};
 
@@ -126,10 +126,20 @@ impl Renderer for MeshGLRenderer {
             let mut gl_plugin = scene_renderer.get_plugin::<GLRendererPlugin>().unwrap();
             let mesh_manager = scene.get_component_manager::<MeshManager>().unwrap();
 
-            let mut camera3d = scene.get_component_manager::<Camera3DManager>().unwrap().get_active_camera().unwrap();
+            let mut view = mat4::new_identity::<f32>();
+            let mut projection = mat4::new_identity::<f32>();
 
-            let view = camera3d.get_view().clone();
-            let projection = camera3d.get_projection();
+            if let Some(camera3d_manager) = scene.get_component_manager::<Camera3DManager>() {
+                if let Some(mut camera3d) = camera3d_manager.get_active_camera() {
+                    mat4::copy(&mut view, camera3d.get_view());
+                    mat4::copy(&mut projection, camera3d.get_projection());
+                }
+            } else if let Some(camera2d_manager) = scene.get_component_manager::<Camera2DManager>() {
+                if let Some(mut camera2d) = camera2d_manager.get_active_camera() {
+                    mat4::from_mat32(&mut view, camera2d.get_view());
+                    mat4::from_mat32(&mut projection, camera2d.get_projection());
+                }
+            }
 
             for mesh in mesh_manager.get_components().iter() {
                 self.render_mesh(mesh, &view, &projection, &mut gl_plugin);
