@@ -12,28 +12,19 @@ homepage = "https://github.com/nathanfaucett/rs-mesh_gl_renderer"
 
 exclude = ["example"]
 
-[dependencies.gl]
-version = "0.6.1"
+[dependencies]
+gl = {version = "0.6.1"}
 
-[dependencies.scene_graph]
-git = "https://github.com/nathanfaucett/rs-scene_graph.git"
-[dependencies.scene_renderer]
-git = "https://github.com/nathanfaucett/rs-scene_renderer.git"
+scene_graph = {git = "https://github.com/nathanfaucett/rs-scene_graph.git"}
+scene_renderer = {git = "https://github.com/nathanfaucett/rs-scene_renderer.git"}
 
-[dependencies.gl_renderer_plugin]
-git = "https://github.com/nathanfaucett/rs-gl_renderer_plugin.git"
+gl_renderer_plugin = {git = "https://github.com/nathanfaucett/rs-gl_renderer_plugin.git"}
 
-[dependencies.mesh_component]
-git = "https://github.com/nathanfaucett/rs-mesh_component.git"
-[dependencies.camera_components]
-git = "https://github.com/nathanfaucett/rs-camera_components.git"
-[dependencies.transform_components]
-git = "https://github.com/nathanfaucett/rs-transform_components.git"
+mesh_component = {git = "https://github.com/nathanfaucett/rs-mesh_component.git"}
+camera_components = {git = "https://github.com/nathanfaucett/rs-camera_components.git"}
+transform_components = {git = "https://github.com/nathanfaucett/rs-transform_components.git"}
 
-[dependencies.mat3]
-git = "https://github.com/nathanfaucett/rs-mat3.git"
-[dependencies.mat4]
-git = "https://github.com/nathanfaucett/rs-mat4.git"
+mat3 = {git = "https://github.com/nathanfaucett/rs-mat3.git"}
+mat4 = {git = "https://github.com/nathanfaucett/rs-mat4.git"}
 
-[dependencies.shared]
-git = "https://github.com/nathanfaucett/rs-shared.git"
+shared = {git = "https://github.com/nathanfaucett/rs-shared.git"}

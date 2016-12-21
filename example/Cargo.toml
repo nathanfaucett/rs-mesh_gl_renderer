@@ -7,34 +7,21 @@ authors = ["nathanfaucett <nathanfaucett@gmail.com>"]
 gl = "0.6.1"
 glutin = "0.7.0"
 
-[dependencies.vector]
-git = "https://github.com/nathanfaucett/rs-vector"
+vector = {git = "https://github.com/nathanfaucett/rs-vector.git"}
 
-[dependencies.gl_context]
-git = "https://github.com/nathanfaucett/rs-gl_context"
+gl_context = {git = "https://github.com/nathanfaucett/rs-gl_context.git"}
 
-[dependencies.geometry]
-git = "https://github.com/nathanfaucett/rs-geometry.git"
-[dependencies.material]
-git = "https://github.com/nathanfaucett/rs-material.git"
-[dependencies.shader]
-git = "https://github.com/nathanfaucett/rs-shader.git"
+geometry = {git = "https://github.com/nathanfaucett/rs-geometry.git"}
+material = {git = "https://github.com/nathanfaucett/rs-material.git"}
+shader = {git = "https://github.com/nathanfaucett/rs-shader.git"}
 
-[dependencies.camera_components]
-git = "https://github.com/nathanfaucett/rs-camera_components.git"
-[dependencies.transform_components]
-git = "https://github.com/nathanfaucett/rs-transform_components.git"
+camera_components = {git = "https://github.com/nathanfaucett/rs-camera_components.git"}
+transform_components = {git = "https://github.com/nathanfaucett/rs-transform_components.git"}
+mesh_component = {git = "https://github.com/nathanfaucett/rs-mesh_component.git"}
 
-[dependencies.scene_renderer]
-git = "https://github.com/nathanfaucett/rs-scene_renderer.git"
-[dependencies.scene_graph]
-git = "https://github.com/nathanfaucett/rs-scene_graph.git"
+scene_renderer = {git = "https://github.com/nathanfaucett/rs-scene_renderer.git"}
+scene_graph = {git = "https://github.com/nathanfaucett/rs-scene_graph.git"}
 
-[dependencies.mesh_component]
-git = "https://github.com/nathanfaucett/rs-mesh_component.git"
+gl_renderer_plugin = {git = "https://github.com/nathanfaucett/rs-gl_renderer_plugin.git"}
 
-[dependencies.gl_renderer_plugin]
-git = "https://github.com/nathanfaucett/rs-gl_renderer_plugin.git"
-
-[dependencies.mesh_gl_renderer]
-path = ".."
+mesh_gl_renderer = {path = ".."}
