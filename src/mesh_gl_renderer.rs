@@ -93,8 +93,6 @@ impl MeshGLRenderer {
                     );
                 }
             }
-
-            unsafe { gl::DrawArrays(gl::TRIANGLE_STRIP, 0, 4); }
         }
         self
     }
