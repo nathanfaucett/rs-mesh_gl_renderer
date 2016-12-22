@@ -1,6 +1,8 @@
 extern crate gl;
 extern crate glutin;
 
+extern crate time;
+
 #[macro_use]
 extern crate vector;
 
@@ -25,7 +27,7 @@ use shader::Shader;
 use camera_components::{Camera3D, Camera3DManager};
 use transform_components::Transform3D;
 
-use scene_graph::{Scene, Entity};
+use scene_graph::{Scene, Entity, Component};
 use scene_renderer::SceneRenderer;
 use gl_renderer_plugin::GLRendererPlugin;
 use mesh_component::Mesh;
@@ -149,21 +151,28 @@ fn main() {
 
     let mut playing = true;
     while playing {
+        let mut camera = scene.get_component_manager::<Camera3DManager>()
+            .unwrap().get_active_camera().unwrap();
+
         for event in window.poll_events() {
             match event {
                 glutin::Event::Closed => {
                     playing = false;
                 },
                 glutin::Event::Resized(w, h) => {
-                    scene.get_component_manager::<Camera3DManager>()
-                        .unwrap().get_active_camera()
-                            .unwrap().set(w as usize, h as usize);
+                    camera.set(w as usize, h as usize);
                     scene_renderer.get_plugin::<GLRendererPlugin>()
                         .unwrap().get_context_mut().set_viewport(0, 0, w as usize, h as usize);
                 },
                 _ => (),
             }
         }
+
+        let ms = now();
+        let mut transform = camera.get_entity().unwrap().get_component::<Transform3D>().unwrap();
+
+        transform.set_position(&[(ms.sin() * 10f64) as f32, (ms.cos() * 10f64) as f32, 5f32]);
+        transform.look_at(&[0f32, 0f32, 0f32], &[0f32, 0f32, 1f32]);
 
         scene.update();
         scene_renderer.render();
@@ -176,4 +185,9 @@ fn main() {
 
     scene.clear();
     scene_renderer.clear();
+}
+
+fn now() -> f64 {
+    let current_time = time::get_time();
+    (current_time.sec as f64) + (current_time.nsec as f64 / 1000f64 / 1000f64 / 1000f64)
 }
